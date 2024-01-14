@@ -1,7 +1,7 @@
 import express from "express";
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
-import axios from 'axios';
+import { OpenAI } from "openai";
 
 dotenv.config();
 
@@ -16,14 +16,22 @@ const db = await mysql.createConnection({
     database: process.env.DB_NAME
 });
 
+// OpenAI API
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+});
+
 // AI agent to convert natural language to SQL
 async function convertToSQL(query) {
-    const response = await axios.post('http://localhost:11434/api/generate', {
-        model: "mistral",
-        prompt: `Convert to SQL: "${query}"`,
+    const prompt = `Convert the following natural language query into SQL:\n\n"${query}"\n\nSQL Query:`;
+    const response = await openai.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "user", content: prompt }],
+        max_tokens: 50,
+        temperature: 0,
     });
 
-    return response.data.response.trim();
+    return response.choices[0].message.content.trim();
 }
 
 // Route to process user query
