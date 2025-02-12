@@ -1,16 +1,16 @@
-# AI Agent for Natural Language to SQL Conversion
+# AI Agent for Natural Language to SQL Conversion 😇
 
 This project is a Node.js-based API that uses an AI agent to convert natural language queries into SQL using OpenAI's GPT model and executes them on a MySQL database.
 
 ![Alt text](%7B2FB3A670-BF1D-4F40-80D5-7FDC1B3CF511%7D.png)
 
-## Features
+## Features 🚀
 
 - AI agent to convert user-friendly natural language queries into SQL
 - Execute generated SQL queries on a MySQL database
 - Retrieve and return query results in JSON format
 
-## Technologies Used
+## Technologies Used 💾
 
 - Node.js
 - Express.js
@@ -18,7 +18,7 @@ This project is a Node.js-based API that uses an AI agent to convert natural lan
 - OpenAI API
 - dotenv for environment variable management
 
-## Installation
+## Installation ⛏️
 
 1. Clone the repository:
    ```sh
@@ -39,7 +39,7 @@ This project is a Node.js-based API that uses an AI agent to convert natural lan
    OPENAI_API_KEY=your_openai_api_key
    ```
 
-## Usage
+## Usage ✨
 
 1. Start the server:
 
