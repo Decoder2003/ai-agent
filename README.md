@@ -1,79 +1,99 @@
-# AI Agent for Natural Language to SQL Conversion 😇
+# Natural Language to SQL API
 
-This project is a Node.js-based API that uses an AI agent to convert natural language queries into SQL using OpenAI's GPT model and executes them on a MySQL database.
+This project is a REST API built with Node.js and Express that converts natural language queries into SQL statements using Google's Gemini AI and executes them on a MySQL database.
 
-![Alt text](%7B2FB3A670-BF1D-4F40-80D5-7FDC1B3CF511%7D.png)
+## Features
 
-## Features 🚀
-
-- AI agent to convert user-friendly natural language queries into SQL
+- Convert natural language queries into SQL statements
 - Execute generated SQL queries on a MySQL database
-- Retrieve and return query results in JSON format
+- Return the results as a JSON response
 
-## Technologies Used 💾
+## Technologies Used
 
 - Node.js
 - Express.js
-- MySQL (with `mysql2` package)
-- OpenAI API
-- dotenv for environment variable management
+- MySQL (mysql2 package)
+- Google's Gemini AI API
+- Axios
+- dotenv (for environment variables management)
 
-## Installation ⛏️
+## Setup Instructions
+
+### Prerequisites
+
+- Node.js and npm installed
+- MySQL database configured
+- Google Gemini AI API key
+
+### Installation
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/Decoder2003/ai-agent
-   cd ai-agent
+   git clone <repository-url>
+   cd <project-directory>
    ```
 2. Install dependencies:
    ```sh
    npm install
    ```
-3. Set up environment variables:
-   Create a `.env` file in the root directory and configure the following:
-   ```sh
-   DB_HOST=your_database_host
-   DB_USER=your_database_user
-   DB_PASSWORD=your_database_password
-   DB_NAME=your_database_name
-   OPENAI_API_KEY=your_openai_api_key
+3. Create a `.env` file and configure the following environment variables:
+   ```env
+   DB_HOST=<your-mysql-host>
+   DB_USER=<your-mysql-username>
+   DB_PASSWORD=<your-mysql-password>
+   DB_NAME=<your-database-name>
+   GEMINI_API_KEY=<your-gemini-api-key>
    ```
 
-## Usage ✨
+### Running the Application
 
-1. Start the server:
+Start the server:
 
-   ```sh
-   node index.js
-   ```
+```sh
+node index.js
+```
 
-   or with nodemon (if installed):
+The server will run on port `5000` by default.
 
-   ```sh
-   nodemon index.js
-   ```
+## API Endpoints
 
-2. Make a `POST` request to the `/query` endpoint with a natural language query:
+### Convert Natural Language to SQL and Execute Query
 
-   ```json
-   {
-     "query": "Show all employees with a salary greater than 50000"
-   }
-   ```
+**Endpoint:** `POST /query`
 
-3. Response example:
-   ```json
-   {
-     "sql": "SELECT * FROM employees WHERE salary > 50000;",
-     "data": [
-       { "id": 1, "name": "John Doe", "salary": 60000 },
-       { "id": 2, "name": "Jane Smith", "salary": 75000 }
-     ]
-   }
-   ```
+**Request Body:**
 
-## Endpoints
+```json
+{
+  "query": "Show all users who registered last week"
+}
+```
 
-| Method | Endpoint | Description                                                                 |
-| ------ | -------- | --------------------------------------------------------------------------- |
-| POST   | `/query` | Uses an AI agent to convert a natural language query to SQL and executes it |
+**Response:**
+
+```json
+{
+  "sql": "SELECT * FROM users WHERE registration_date >= NOW() - INTERVAL 7 DAY;",
+  "data": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "registration_date": "2024-02-20"
+    }
+  ]
+}
+```
+
+## Error Handling
+
+If the API encounters an error, it returns a response with an error message:
+
+```json
+{
+  "error": "Internal Server Error"
+}
+```
+
+## License
+
+This project is open-source and available under the MIT License.
