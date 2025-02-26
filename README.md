@@ -1,6 +1,7 @@
 # Natural Language to SQL API
 
 This project is a REST API built with Node.js and Express that converts natural language queries into SQL statements using Google's Gemini AI and executes them on a MySQL database.
+![Alt text](%7B5D50D9EB-B172-4CA2-BE3F-E0152B4CEA17%7D.png)
 
 ## Features
 
